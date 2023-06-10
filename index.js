@@ -7,7 +7,11 @@ function verify(event) {
     alert("fill the required detailes");
   } else if (email == "admin@materialize.com" && pass == "admin") {
     window.location.href = "component.html";
-  } else {
+  }
+  else if (email == "client@materialize.com" && pass == "client") {
+    window.location.href = "component.html";
+  }
+  else {
     alert("Incorrect password or Email. Please try again.");
   }
 }
