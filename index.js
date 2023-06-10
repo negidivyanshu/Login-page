@@ -3,12 +3,12 @@ function verify(event) {
   var pass = document.getElementById("password").value;
 
   event.preventDefault();
-  if (email ==="" && pass === "") {
+  if (email === "" && pass === "") {
     alert("fill the required detailes");
   } else if (email == "admin@materialize.com" && pass == "admin") {
-    alert("welcome");
+    window.location.href = "component.html";
   } else {
-    alert("Wrong email or password.");
+    alert("Incorrect password or Email. Please try again.");
   }
 }
 
