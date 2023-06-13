@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="index(2).css">
+    <script src="index.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+    <title>Document</title>
+</head>
+<style>
+    @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap");
+
+:root {
+    --header-height: 3rem;
+    --nav-width: 40px;
+    --body-font: 'Nunito', sans-serif;
+    --normal-font-size: 1rem;
+    --z-fixed: 100;
+}
+
+*,
+::before,
+::after {
+    box-sizing: border-box;
+}
+
+body {
+    position: relative;
+    margin: var(--header-height) 0 0 0;
+    padding: 0 1rem;
+    font-family: var(--body-font);
+    font-size: var(--normal-font-size);
+    transition: .5s;
+}
+
+a {
+    text-decoration: none;
+}
+
+.header {
+    width: 100%;
+    height: var(--header-height);
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1rem;
+    background-color: var(--white-color);
+    z-index: var(--z-fixed);
+    transition: .5s;
+}
+
+.header_toggle {
+    color: var(--first-color);
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.header_img {
+    width: 35px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.header_img img {
+    width: 40px;
+}
+
+.l-navbar {
+    position: fixed;
+    top: 0;
+    left: -30%;
+    width: 3.5rem;
+    height: 100vh;
+    background-color: var(--first-color);
+    padding: .5rem 5px 0 0;
+    transition: .5s;
+    z-index: var(--z-fixed);
+}
+
+.nav {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+}
+
+.scroll-content::-webkit-scrollbar {
+    width: 0;
+}
+
+.nav_logo,
+.nav_link {
+    display: grid;
+    grid-template-columns: max-content max-content;
+    align-items: center;
+    column-gap: 2rem;
+    padding: 5px;
+}
+
+.nav_logo {
+    margin-bottom: 2rem;
+}
+
+.nav_logo-icon {
+    font-size: 3rem;
+    color: var(--white-color);
+}
+
+.nav_logo-name {
+    color: var(--white-color);
+    font-weight: 700;
+}
+
+.nav_link {
+    position: relative;
+    color: rgb(112, 114, 115);
+    margin: none;
+    transition: .3s;
+    margin-left: 15px;
+    text-decoration: none;
+}
+
+.body-pd {
+    padding-left: calc(var(--nav-width) + 10px);
+}
+
+.height-100 {
+    height: 100vh;
+}
+
+@media screen and (min-width: 768px) {
+    body {
+        margin: calc(var(--header-height) + 1rem) 0 0 0;
+        padding-left: calc(var(--nav-width) + 2rem);
+    }
+
+    .header {
+        height: calc(var(--header-height) + 1rem);
+        padding: 0 2rem 0 calc(var(--nav-width) + 2rem);
+    }
+
+    .header_img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .header_img img {
+        width: 45px;
+    }
+
+    .l-navbar {
+        left: 0;
+        padding: 1rem 0.5rem 0 0;
+    }
+
+    .show {
+        width: calc(var(--nav-width) + 156px);
+    }
+
+    .body-pd {
+        padding-left: calc(var(--nav-width) + 188px);
+    }
+
+    .active {
+        background-color: rgb(181, 142, 226);
+        color: aliceblue;
+    }
+}
+
+span::after {
+    float: right;
+    right: 10%;
+}
+
+p {
+    font-size: 14px;
+    color: rgb(168, 167, 167);
+    margin: 20px 55px !important;
+}
+
+.slide {
+    clear: both;
+    width: 100%;
+    height: 0px;
+    overflow: hidden;
+    text-align: center;
+    transition: height .4s ease;
+}
+
+.slide li {
+    padding: 10px;
+}
+
+#touch {
+    position: absolute;
+    opacity: 0;
+    height: 0px;
+}
+
+#touch:checked + .slide {
+    height: 140px;
+}
+
+.slide a {
+    text-decoration: dotted;
+}
+
+.nav_icon {
+    width: auto;
+}
+.bi{
+    font-size: 1.5rem;
+}
+</style>
+<body id="body-pd">
+    <header class="header" id="header">
+        <div class="header_toggle">
+            <i class='bx bx-menu' id="header-toggle"></i>
+        </div>
+        <div class="header_img">
+            <img src="https://i.imgur.com/hczKIze.jpg" alt="">
+        </div>
+    </header>
+    <div class="l-navbar" id="nav-bar">
+        <nav class="nav scroll-content">
+            <div>
+                <a href="#" class="nav_logo" style="margin-left: 5px;">
+                    <svg width="40" fill="none" height="22" viewBox="0 0 268 150" xmlns="http://www.w3.org/2000/svg">
+                        <rect rx="25.1443" width="50.2886" height="143.953" fill="#666CFF"
+                            transform="matrix(-0.865206 0.501417 0.498585 0.866841 195.571 0)"></rect>
+                        <rect rx="25.1443" width="50.2886" height="143.953" fill-opacity="0.4"
+                            fill="url(#paint0_linear_7821_79167)"
+                            transform="matrix(-0.865206 0.501417 0.498585 0.866841 196.084 0)"></rect>
+                        <rect rx="25.1443" width="50.2886" height="143.953" fill="#666CFF"
+                            transform="matrix(0.865206 0.501417 -0.498585 0.866841 173.147 0)"></rect>
+                        <rect rx="25.1443" width="50.2886" height="143.953" fill="#666CFF"
+                            transform="matrix(-0.865206 0.501417 0.498585 0.866841 94.1973 0)"></rect>
+                        <rect rx="25.1443" width="50.2886" height="143.953" fill-opacity="0.4"
+                            fill="url(#paint1_linear_7821_79167)"
+                            transform="matrix(-0.865206 0.501417 0.498585 0.866841 94.1973 0)"></rect>
+                        <rect rx="25.1443" width="50.2886" height="143.953" fill="#666CFF"
+                            transform="matrix(0.865206 0.501417 -0.498585 0.866841 71.7728 0)"></rect>
+                        <defs>
+                            <linearGradient y1="0" x1="25.1443" x2="25.1443" y2="143.953" id="paint0_linear_7821_79167"
+                                gradientUnits="userSpaceOnUse">
+                                <stop></stop>
+                                <stop offset="1" stop-opacity="0"></stop>
+                            </linearGradient>
+                            <linearGradient y1="0" x1="25.1443" x2="25.1443" y2="143.953" id="paint1_linear_7821_79167"
+                                gradientUnits="userSpaceOnUse">
+                                <stop></stop>
+                                <stop offset="1" stop-opacity="0"></stop>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <span class="nav_logo-name">Materialize</span>
+                </a>
+                <div class="nav_list">
+                    <div class="sidebar">
+                        <nav>
+                            <label class="nav_link active" for="touch">
+                                <i class="bi bi-house-door"></i>
+                                <span class="nav_name">dashboard <i class="bx bxs-chevron-down arrow"></i></span>
+                            </label>
+                            <input type="checkbox" id="touch">
+                            <ul class="slide">
+                                <li><a href="#">CRM</a></li>
+                                <li><a href="#">Analytics</a></li>
+                                <li><a id="ecom" href="component.html">eCommerce</a></li>
+                            </ul>
+                        </nav>
+                        <p>APPS & PAGES</p>
+                        <a href="#" class="nav_link">
+                            <i class="bi bi-envelope"></i>
+                            <span class="nav_name">Emails</span>
+                        </a>
+                        <a href="#" class="nav_link">
+                            <i class="bi bi-chat-left"></i>
+                            <span class="nav_name">Chat</span>
+                        </a>
+                        <a href="#" class="nav_link">
+                            <i class="bi bi-calendar"></i>
+                            <span class="nav_name">Calendar</span>
+                        </a>
+                        <a href="#" class="nav_link">
+                            <i class="bi bi-receipt"></i>
+                            <span class="nav_name">Invoice</span>
+                        </a>
+                        <a href="#" class="nav_link">
+                            <i class="bi bi-person"></i>
+                            <span class="nav_name">Users</span>
+                        </a>
+                        <a href="#" class="nav_link">
+                            <i class="bi bi-shield"></i>
+                            <span class="nav_name">Roles & Permissions</span>
+                        </a>
+                        <a href="#" class="nav_link">
+                            <i class="bi bi-file-earmark"></i>
+                            <span class="nav_name">Pages</span>
+                        </a>
+                        <a href="#" class="nav_link">
+                            <i class="bi bi-lock"></i>
+                            <span class="nav_name">Auth Pages</span>
+                        </a>
+                        <a href="#" class="nav_link">
+                            <i class="bi bi-dash"></i>
+                            <span class="nav_name">Wizard Examples</span>
+                        </a>
+                        <a href="#" class="nav_link">
+                            <i class="bi bi-clipboard-plus"></i>
+                            <span class="nav_name">Dialog Examples</span>
+                        </a>
+                        <p>USER INTERFACE</p>
+                        <a href="#" class="nav_link">
+                            <i class="bi bi-type"></i>
+                            <span class="nav_name">Typography</span>
+                        </a>
+                        <a href="#" class="nav_link">
+                            <i class="bi bi-triangle"></i>
+                            <span class="nav_name">Icons</span>
+                        </a>
+                        <a href="#" class="nav_link">
+                            <i class="bi bi-credit-card"></i>
+                            <span class="nav_name">Cards</span>
+                        </a>
+                        <a href="#" class="nav_link">
+                            <i class="bi bi-motherboard"></i>
+                            <span class="nav_name">Components</span>
+                        </a>
+                        <p>FORM & TABLES</p>
+                        <a href="#" class="nav_link">
+                            <i class="bi bi-layout-text-window"></i>
+                            <span class="nav_name">Form Elements</span>
+                        </a>
+                        <a href="#" class="nav_link">
+                            <i class="bi bi-box"></i>
+                            <span class="nav_name">Form Layouts</span>
+                        </a>
+                        <a href="#" class="nav_link">
+                            <i class="bi bi-check2-circle"></i>
+                            <span class="nav_name">Form Validation</span>
+                        </a>
+                        <a href="#" class="nav_link">
+                            <i class="bi bi-toggles2"></i>
+                            <span class="nav_name">Form Wizard</span>
+                        </a>
+                        <a href="#" class="nav_link">
+                            <i class="bi bi-table"></i>
+                            <span class="nav_name">Table</span>
+                        </a>
+                        <a href="#" class="nav_link">
+                            <i class="bi bi-grid-3x3"></i>
+                            <span class="nav_name">Mui DataGrid</span>
+                        </a>
+                        <p>CHARTS & MISC</p>
+                        <a href="#" class="nav_link">
+                            <i class="bi bi-pie-chart-fill"></i>
+                            <span class="nav_name">Charts</span>
+                        </a>
+                        <a href="#" class="nav_link">
+                            <i class="bi bi-shield"></i>
+                            <span class="nav_name">Access Control</span>
+                        </a>
+                        <a href="#" class="nav_link">
+                            <i class="bi bi-three-dots"></i>
+                            <span class="nav_name">Others</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div class="component">
+        
+
+    </div>
+</body>
+
+</html>
